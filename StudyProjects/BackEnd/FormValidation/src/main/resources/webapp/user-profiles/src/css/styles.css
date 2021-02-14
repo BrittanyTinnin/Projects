@@ -1,0 +1,16 @@
+.background-picture {
+  position: relative;
+  background: url('../css/images/wallpaper.jpg');
+  min-height: 300px;
+}
+
+#profile-picture {
+  /* border-radius: 100rem; */
+  margin-top: -85px;
+}
+
+@media (min-width: 700) {
+  .above-form {
+    margin-top: 250px;
+  }
+}

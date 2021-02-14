@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "userName": "britt",
+      "age": "30",
+      "role": {
+        "userRole": "manager"
+      },
+      "id": 1
+    },
+    {
+      "userName": "danielle",
+      "age": "12",
+      "role": {
+        "userRole": "fighter"
+      },
+      "id": 2
+    },
+    {
+      "userName": "Alexis",
+      "age": "32",
+      "role": {
+        "userRole": "fighter"
+      },
+      "id": 3
+    },
+    {
+      "userName": "blade",
+      "age": "58",
+      "role": {
+        "userRole": "fighter"
+      },
+      "id": 4
+    },
+    {
+      "userName": "janel",
+      "age": "66",
+      "role": {
+        "userRole": "employee"
+      },
+      "id": 5
+    }
+  ]
+}
