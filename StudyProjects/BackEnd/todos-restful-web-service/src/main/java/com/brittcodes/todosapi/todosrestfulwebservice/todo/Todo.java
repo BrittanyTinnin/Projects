@@ -1,15 +1,15 @@
 package com.brittcodes.todosapi.todosrestfulwebservice.todo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Todo {
 	private long id;
 	private String username;
 	private String description;
-	private LocalDateTime targetDate;
+	private LocalDate targetDate;
 	private boolean isDone;
 
-	public Todo(long id, String username, String description, LocalDateTime targetDate, boolean isDone) {
+	public Todo(long id, String username, String description, LocalDate targetDate, boolean isDone) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -42,11 +42,11 @@ public class Todo {
 		this.description = description;
 	}
 
-	public LocalDateTime getTargetDate() {
+	public LocalDate getTargetDate() {
 		return targetDate;
 	}
 
-	public void setTargetDate(LocalDateTime targetDate) {
+	public void setTargetDate(LocalDate targetDate) {
 		this.targetDate = targetDate;
 	}
 
