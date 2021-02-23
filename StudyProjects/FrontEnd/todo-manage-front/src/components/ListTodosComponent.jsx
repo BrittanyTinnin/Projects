@@ -14,7 +14,6 @@ class ListTodosComponent extends Component {
   componentDidMount() {
     let username = AuthenticationService.getLoggedInUsername();
     TodoDataService.retrieveAllTodos(username).then((response) => {
-      console.log(response.data);
       this.setState({
         todos: response.data,
       });
@@ -40,9 +39,19 @@ class ListTodosComponent extends Component {
     });
   };
 
+  addTodoClicked = () => {
+    this.props.history.push(`/todos/-1`);
+    // let username = AuthenticationService.getLoggedInUsername();
+    // // console.log(id + " " + username);
+    // TodoDataService.updateTodo(username, id).then((response) => {
+    //   this.setState({ message: `Update todo ${id} successfully` });
+    //   this.refreshTodos();
+    // });
+  };
+
   updateTodoClicked = (id) => {
     console.log(`update todo ${id}`);
-    this.props.history.push(`/todos/${id}`)
+    this.props.history.push(`/todos/${id}`);
     // let username = AuthenticationService.getLoggedInUsername();
     // // console.log(id + " " + username);
     // TodoDataService.updateTodo(username, id).then((response) => {
@@ -54,11 +63,11 @@ class ListTodosComponent extends Component {
   render() {
     return (
       <div>
-        <h1>List Todos</h1>
-        {this.state.message && (
-          <div className='alert alert-success'>{this.state.message}</div>
-        )}
         <div className='container'>
+          <h1>List Todos</h1>
+          {this.state.message && (
+            <div className='alert alert-success'>{this.state.message}</div>
+          )}
           <table className='table'>
             <thead>
               <tr>
@@ -93,6 +102,7 @@ class ListTodosComponent extends Component {
               ))}
             </tbody>
           </table>
+            <button className="btn btn-success" onClick={this.addTodoClicked}>Add</button>
         </div>
       </div>
     );
