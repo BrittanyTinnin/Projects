@@ -1,24 +1,47 @@
+import axios from 'axios';
+
 class AuthenticationService {
+  executeBasicAuthenticationService(username, password) {
+    return axios.get('http://localhost:8080/basicauth', {
+      headers: { authorization: this.createBasicAuthToken(username, password) },
+    });
+  }
 
-    registerSuccessfulLogin(username, password){
-        sessionStorage.setItem('authenticatedUser', username);
-    }
+  createBasicAuthToken(username, password) {
+    return 'Basic ' + window.btoa(`${username}:${password}`);
+  }
 
-    logout(){
-        sessionStorage.removeItem('authenticatedUser')
-    }
+  registerSuccessfulLogin(username, password) {
+    // let basicAuthHeader = 'Basic ' + window.btoa(`${username}:${password}`);
 
-    isUserLoggedIn(){
-        let user = sessionStorage.getItem('authenticatedUser')
-        if(user===null) return false;
-        return true;
-    }
+    sessionStorage.setItem('authenticatedUser', username);
+    this.setupAxioxInterceptor(this.createBasicAuthToken(username, password));
+  }
 
-    getLoggedInUsername(){
-        let user = sessionStorage.getItem('authenticatedUser')
-        if(user===null) return '';
-        return user;
-    }
+  logout() {
+    sessionStorage.removeItem('authenticatedUser');
+  }
+
+  isUserLoggedIn() {
+    let user = sessionStorage.getItem('authenticatedUser');
+    if (user === null) return false;
+    return true;
+  }
+
+  getLoggedInUsername() {
+    let user = sessionStorage.getItem('authenticatedUser');
+    if (user === null) return '';
+    return user;
+  }
+
+  setupAxioxInterceptor(basicAuthHeader) {
+    axios.interceptors.request.use((config) => {
+      if (this.isUserLoggedIn()) {
+        config.headers.authorization = basicAuthHeader;
+      }
+      return config;
+    });
+  }
 }
 
 export default new AuthenticationService();

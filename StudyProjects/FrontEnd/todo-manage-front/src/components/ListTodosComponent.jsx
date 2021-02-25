@@ -41,23 +41,11 @@ class ListTodosComponent extends Component {
 
   addTodoClicked = () => {
     this.props.history.push(`/todos/-1`);
-    // let username = AuthenticationService.getLoggedInUsername();
-    // // console.log(id + " " + username);
-    // TodoDataService.updateTodo(username, id).then((response) => {
-    //   this.setState({ message: `Update todo ${id} successfully` });
-    //   this.refreshTodos();
-    // });
   };
 
   updateTodoClicked = (id) => {
     console.log(`update todo ${id}`);
     this.props.history.push(`/todos/${id}`);
-    // let username = AuthenticationService.getLoggedInUsername();
-    // // console.log(id + " " + username);
-    // TodoDataService.updateTodo(username, id).then((response) => {
-    //   this.setState({ message: `Update todo ${id} successfully` });
-    //   this.refreshTodos();
-    // });
   };
 
   render() {
@@ -102,7 +90,9 @@ class ListTodosComponent extends Component {
               ))}
             </tbody>
           </table>
-            <button className="btn btn-success" onClick={this.addTodoClicked}>Add</button>
+          <button className='btn btn-success' onClick={this.addTodoClicked}>
+            Add
+          </button>
         </div>
       </div>
     );

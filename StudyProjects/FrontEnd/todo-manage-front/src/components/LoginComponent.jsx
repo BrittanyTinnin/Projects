@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AuthenticationService from './AuthenticationService'
+import AuthenticationService from './AuthenticationService';
 
 class LoginComponent extends Component {
   constructor(props) {
@@ -20,21 +20,36 @@ class LoginComponent extends Component {
 
   loginClicked = (event) => {
     //brittcodes,awesome
-    if (
-      this.state.username === 'brittcodes' &&
-      this.state.password === 'awesome'
-    ) {
-      AuthenticationService.registerSuccessfulLogin(
-        this.state.username,
-        this.state.password
-      );
-      this.props.history.push(`/welcome/${this.state.username}`);
-      //   this.setState({ hasLoginFailed: false });
-      //   this.setState({ showSuccessMessage: true });
-    } else {
-      this.setState({ hasLoginFailed: true });
-      this.setState({ showSuccessMessage: false });
-    }
+    // if (
+    //   this.state.username === 'brittcodes' &&
+    //   this.state.password === 'awesome'
+    // ) {
+    //   AuthenticationService.registerSuccessfulLogin(
+    //     this.state.username,
+    //     this.state.password
+    //   );
+    //   this.props.history.push(`/welcome/${this.state.username}`);
+    //   //   this.setState({ hasLoginFailed: false });
+    //   //   this.setState({ showSuccessMessage: true });
+    // } else {
+    //   this.setState({ hasLoginFailed: true });
+    //   this.setState({ showSuccessMessage: false });
+    // }
+    AuthenticationService.executeBasicAuthenticationService(
+      this.state.username,
+      this.state.password
+    )
+      .then(() => {
+        AuthenticationService.registerSuccessfulLogin(
+          this.state.username,
+          this.state.password
+        );
+        this.props.history.push(`/welcome/${this.state.username}`);
+      })
+      .catch(() => {
+        this.setState({ hasLoginFailed: true });
+        this.setState({ showSuccessMessage: false });
+      });
   };
 
   // handleUsernameChange = (event) => {

@@ -1,4 +1,4 @@
-package com.brittcodes.todosapi.todosrestfulwebservice.helloworld;
+package com.brittcodes.todosapi.todosrestfulwebservice.hello;
 
 public class HelloWorldBean {
 
@@ -12,6 +12,5 @@ public class HelloWorldBean {
 	public String getMessage() {
 		return message;
 	}
-	
-	
+
 }

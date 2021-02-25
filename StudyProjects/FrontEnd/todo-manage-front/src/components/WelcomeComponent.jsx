@@ -15,7 +15,16 @@ class WelcomeComponent extends React.Component {
   };
 
   handleError = (error) => {
-    this.setState({ message: error.response.data.message });
+    let errorMessage = '';
+    if(error.message){
+      errorMessage += error.message;
+    }
+
+    if(error.response && error.response.data){
+      errorMessage += error.response.data.message
+    }
+
+    this.setState({ message: errorMessage });
   };
 
   retrieveWelcomeMessage = () => {

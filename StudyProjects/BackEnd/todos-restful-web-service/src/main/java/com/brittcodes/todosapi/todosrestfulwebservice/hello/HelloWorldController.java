@@ -1,4 +1,4 @@
-package com.brittcodes.todosapi.todosrestfulwebservice.helloworld;
+package com.brittcodes.todosapi.todosrestfulwebservice.hello;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
