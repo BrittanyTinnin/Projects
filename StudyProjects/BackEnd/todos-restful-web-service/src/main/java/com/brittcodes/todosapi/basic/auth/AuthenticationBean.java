@@ -1,4 +1,4 @@
-package com.brittcodes.todosapi.todosrestfulwebservice.basic;
+package com.brittcodes.todosapi.basic.auth;
 
 public class AuthenticationBean {
 	private String message;
@@ -20,7 +20,5 @@ public class AuthenticationBean {
 	public String toString() {
 		return String.format("AuthenticationBean [message=%s]", message);
 	}
-
-	
 
 }

@@ -1,4 +1,4 @@
-package com.brittcodes.todosapi.todosrestfulwebservice.basic;
+package com.brittcodes.todosapi.basic.auth;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -8,15 +8,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfigBasicAuth  extends WebSecurityConfigurerAdapter{
-	
+public class SecurityConfigBasicAuth extends WebSecurityConfigurerAdapter {
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-			.anyRequest().authenticated()
-			.and()
+		http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest()
+				.authenticated().and()
 //			.formLogin().and()
-			.httpBasic();
+				.httpBasic();
 	}
 
 }
