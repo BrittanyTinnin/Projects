@@ -6,7 +6,7 @@ import FooterComponent from './FooterComponent';
 import HeaderComponent from './HeaderComponent';
 import ListTodosComponent from './ListTodosComponent';
 import LoginComponent from './LoginComponent';
-import LogoutComponent from './LogoutComponent';
+import LogoutComponent from './LogoutComponent'
 import TodoComponent from './TodoComponent';
 import WelcomeComponent from './WelcomeComponent';
 
