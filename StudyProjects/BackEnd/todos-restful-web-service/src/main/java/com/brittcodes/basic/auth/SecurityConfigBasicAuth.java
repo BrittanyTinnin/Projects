@@ -1,4 +1,4 @@
-package com.brittcodes.todosapi.basic.auth;
+package com.brittcodes.basic.auth;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

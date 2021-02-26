@@ -1,4 +1,4 @@
-package com.brittcodes.todosapi.basic.auth;
+package com.brittcodes.basic.auth;
 
 public class AuthenticationBean {
 	private String message;
