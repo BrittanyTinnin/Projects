@@ -29,6 +29,7 @@ class UI {
     <td>${book.title}</td>
     <td>${book.author}</td>
     <td>${book.isbn}</td>
+    <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
     `;
 
     list.appendChild(row);
@@ -41,12 +42,20 @@ class UI {
     const container = document.querySelector('.container');
     const form = document.querySelector('#add-book-form');
     container.insertBefore(div, form);
+
+    setTimeout(() => document.querySelector('.alert').remove(), 3000);
   }
 
   static clearFields() {
     document.querySelector('#title').value = '';
     document.querySelector('#author').value = '';
     document.querySelector('#isbn').value = '';
+  }
+
+  static deleteBook(element) {
+    if (element.classList.contains('delete')) {
+      element.parentElement.parentElement.remove();
+    }
   }
 }
 
@@ -69,6 +78,8 @@ document.querySelector('#add-book-form').addEventListener('submit', (event) => {
   if ((title === '') | (author === '') | (isbn === '')) {
     // show alert if values empty -- from UI class
     UI.showAlert('Please fill in all fields.', 'danger');
+  } else if (isbn.length > 10) {
+    UI.showAlert('ISBN cannot be more than 10 numbers', 'danger');
   } else {
     // Instantiate a book
     const book = new Book(title, author, isbn);
@@ -87,7 +98,14 @@ document.querySelector('#add-book-form').addEventListener('submit', (event) => {
   }
 });
 
-// Event Remove a Book
-// Remove book from UI -- from UI class
-// Remove book from store -- from Store class
-// Show success message -- from UI class
+// Event: Remove a Book
+document.querySelector('#book-list').addEventListener('click', (e) => {
+  // Remove book from UI -- from UI class
+  UI.deleteBook(e.target);
+
+  // Remove book from store -- from Store class
+  // Store.removeBook();
+
+  // Show success message -- from UI class
+  UI.showAlert('Book removed successfully.', 'success');
+});
