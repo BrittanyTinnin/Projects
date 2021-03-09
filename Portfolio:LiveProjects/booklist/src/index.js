@@ -33,6 +33,21 @@ class UI {
 
     list.appendChild(row);
   }
+
+  static showAlert(message, className) {
+    const div = document.createElement('div');
+    div.className = `alert alert-${className}`;
+    div.appendChild(document.createTextNode(message));
+    const container = document.querySelector('.container');
+    const form = document.querySelector('#add-book-form');
+    container.insertBefore(div, form);
+  }
+
+  static clearFields() {
+    document.querySelector('#title').value = '';
+    document.querySelector('#author').value = '';
+    document.querySelector('#isbn').value = '';
+  }
 }
 
 // Store Class: Handles Storage
@@ -41,21 +56,35 @@ class UI {
 document.addEventListener('DOMContentLoaded', UI.displayBooks);
 
 // Event: Add a book
-// Get form values
-// Validate form values
-// show alert if values empty -- from UI class
-// Instantiate a book
-// Add Book to UI -- from UI class
-// Add book to store -- from Store class
-// Show success message -- from UI class
-// Clear fields -- from UI class
 document.querySelector('#add-book-form').addEventListener('submit', (event) => {
   event.preventDefault();
 
   console.log('submit form');
+  // Get form values
   const title = document.querySelector('#title').value;
-  const author = document.querySelector('#author');
-  const isbn = document.querySelector('#isbn');
+  const author = document.querySelector('#author').value;
+  const isbn = document.querySelector('#isbn').value;
+
+  // Validate form values
+  if ((title === '') | (author === '') | (isbn === '')) {
+    // show alert if values empty -- from UI class
+    UI.showAlert('Please fill in all fields.', 'danger');
+  } else {
+    // Instantiate a book
+    const book = new Book(title, author, isbn);
+
+    // Add Book to UI -- from UI class
+    UI.addBookToList(book);
+
+    // Add book to store -- from Store class
+    // UI.addBookToStore(book);
+
+    // Show success message -- from UI class
+    UI.showAlert('Book added successfully', 'success');
+
+    // Clear fields -- from UI class
+    UI.clearFields();
+  }
 });
 
 // Event Remove a Book
